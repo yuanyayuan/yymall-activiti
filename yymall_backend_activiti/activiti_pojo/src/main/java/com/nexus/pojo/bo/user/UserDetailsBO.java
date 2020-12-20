@@ -1,6 +1,7 @@
 package com.nexus.pojo.bo.user;
 
 import com.nexus.pojo.UmsResource;
+import com.nexus.pojo.UmsRole;
 import com.nexus.pojo.UmsUser;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -13,10 +14,13 @@ import java.util.stream.Collectors;
 public class UserDetailsBO implements UserDetails {
     private UmsUser user;
     private List<UmsResource> resourceList;
-    public UserDetailsBO(UmsUser user,List<UmsResource> resourceList) {
+    private List<UmsRole> roleList;
+    public UserDetailsBO(UmsUser user,List<UmsResource> resourceList,List<UmsRole> roleList) {
         this.user = user;
         this.resourceList = resourceList;
+        this.roleList = roleList;
     }
+
     /**
      * Returns the authorities granted to the user. Cannot return <code>null</code>.
      *
@@ -25,9 +29,10 @@ public class UserDetailsBO implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         //返回当前用户的角色
-        return resourceList.stream()
-                .map(role ->new SimpleGrantedAuthority(role.getId()+":"+role.getName()))
-                .collect(Collectors.toList());
+        List<SimpleGrantedAuthority> collect = resourceList.stream().map(role -> new SimpleGrantedAuthority(role.getId() + ":" + role.getName())).collect(Collectors.toList());
+        List<SimpleGrantedAuthority> collect1 = roleList.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+        collect.addAll(collect1);
+        return collect;
     }
 
     /**

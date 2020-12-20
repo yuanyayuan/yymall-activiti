@@ -1,6 +1,7 @@
 package com.nexus.service;
 
 import com.nexus.pojo.UmsResource;
+import com.nexus.pojo.UmsRole;
 import com.nexus.pojo.UmsUser;
 import com.nexus.pojo.bo.user.UserCreateBO;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -69,4 +70,13 @@ public interface IUmsUserService {
      * @return java.util.List<com.nexus.pojo.UmsResource>
     **/
     List<UmsResource> getResourceList(Long userId);
+    /**
+     * 获取用户的角色
+     * @Author : Nexus
+     * @Description : //TODO
+     * @Date : 2020/12/20 21:33
+     * @Param : adminId
+     * @return : java.util.List<com.nexus.pojo.UmsRole>
+     **/
+    List<UmsRole> getRoleList(Long userId);
 }

@@ -34,7 +34,15 @@ public enum ResultCode implements IErrorCode {
     //admin相关错误
     ADMIN_SHOULD_LOGIN(30001,"管理员需要先登录"),
     //工作流相关
-    PROCESSDEFINITION_GET_ERROR(1,"获取流程定义失败");
+    PROCESSDEFINITION_GET_ERROR(1,"获取流程定义失败"),
+    PROCESSDEFINITION_CREATE_ERROR(1,"创建流程定义失败"),
+    PROCESSDEPLOYMENT_GET_ERROR(1,"获取流程部署失败"),
+    PROCESSINSTANCE_GET_ERROR(1,"获取流程实例失败"),
+    PROCESSINSTANCE_CREATE_ERROR(1,"创建流程实例失败"),
+    POCESSINSTANCE_SUSPEND_ERROR(1,"挂起流程实例失败"),
+    POCESSINSTANCE_RESUME_ERROR(1,"激活流程实例失败"),
+    POCESSINSTANCE_DELETE_ERROR(1,"删除流程实例失败"),
+    POCESSINSTANCE_GETPARAM_ERROR(1,"获取流程参数失败");
 
     private long code;
     private String message;

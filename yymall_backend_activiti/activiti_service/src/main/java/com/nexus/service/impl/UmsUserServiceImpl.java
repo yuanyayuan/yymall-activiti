@@ -4,6 +4,7 @@ import com.nexus.common.exception.Asserts;
 import com.nexus.dao.mapper.UmsUserMapper;
 import com.nexus.dao.mapper.custom.UmsUserRoleRelationMapperCustom;
 import com.nexus.pojo.UmsResource;
+import com.nexus.pojo.UmsRole;
 import com.nexus.pojo.UmsUser;
 import com.nexus.pojo.bo.user.UserCreateBO;
 import com.nexus.pojo.bo.user.UserDetailsBO;
@@ -13,14 +14,18 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -55,7 +60,8 @@ public class UmsUserServiceImpl implements IUmsUserService {
         UmsUser user = getUserByUsername(username);
         if (user != null) {
             List<UmsResource> resourceList = getResourceList(user.getId());
-            return new UserDetailsBO(user, resourceList);
+            List<UmsRole> roleList = getRoleList(user.getId());
+            return new UserDetailsBO(user, resourceList, roleList);
         }
         throw  new UsernameNotFoundException("用户名或密码错误");
     }
@@ -136,5 +142,20 @@ public class UmsUserServiceImpl implements IUmsUserService {
             log.warn("登录异常:{}", e.getMessage());
         }
         return token;
+    }
+
+    /**
+     * 获取用户的角色
+     *
+     * @param userId
+     * @return : java.util.List<com.nexus.pojo.UmsRole>
+     * @Author : Nexus
+     * @Description : //TODO
+     * @Date : 2020/12/20 21:33
+     * @Param : adminId
+     */
+    @Override
+    public List<UmsRole> getRoleList(Long userId) {
+        return userRoleRelationMapperCustom.getRoleList(userId);
     }
 }
