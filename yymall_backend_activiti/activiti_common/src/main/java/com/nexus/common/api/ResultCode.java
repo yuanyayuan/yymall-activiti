@@ -42,7 +42,12 @@ public enum ResultCode implements IErrorCode {
     POCESSINSTANCE_SUSPEND_ERROR(1,"挂起流程实例失败"),
     POCESSINSTANCE_RESUME_ERROR(1,"激活流程实例失败"),
     POCESSINSTANCE_DELETE_ERROR(1,"删除流程实例失败"),
-    POCESSINSTANCE_GETPARAM_ERROR(1,"获取流程参数失败");
+    POCESSINSTANCE_GETPARAM_ERROR(1,"获取流程参数失败"),
+    TASK_GET_ERROR(1,"获取我的代办任务失败"),
+    TASK_FINISH_ERROR(1,"任务完成失败"),
+    HISTORY_TASK_FINISH_ERROR(1,"获取历史任务失败"),
+    FORM_DATA_NULL(1,"无表单"),
+    FORM_DATA_SHOW_ERROR(1,"任务表单渲染失败");
 
     private long code;
     private String message;

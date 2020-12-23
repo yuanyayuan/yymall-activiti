@@ -58,11 +58,6 @@ public class ProcessInstanceController {
     @Autowired
     private ProcessRuntime processRuntime;
 
-    @Autowired
-    private IUmsUserService userService;
-
-    @Autowired
-    private SecurityUtil securityUtil;
     /**
      * 查询流程实例
      * @Author : Nexus
@@ -117,9 +112,10 @@ public class ProcessInstanceController {
      **/
     @ApiOperation(value = "启动流程实例", notes = "启动流程实例", httpMethod = "GET")
     @GetMapping("/startProcess")
-    public ServerResponse startProcess(@RequestParam("processDefinitionKey") String processDefinitionKey,
-                                     @RequestParam("instanceName") String instanceName,
-                                     @RequestParam("instanceVariable") String instanceVariable) {
+    public ServerResponse startProcess(
+            @RequestParam("processDefinitionKey") String processDefinitionKey,
+            @RequestParam("instanceName") String instanceName,
+            @RequestParam("instanceVariable") String instanceVariable) {
         try {
             ProcessInstance processInstance = processRuntime.start(ProcessPayloadBuilder
                     .start()

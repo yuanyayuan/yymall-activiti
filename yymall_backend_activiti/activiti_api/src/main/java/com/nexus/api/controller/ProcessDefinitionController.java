@@ -57,9 +57,6 @@ public class ProcessDefinitionController {
     @Autowired
     private RepositoryService repositoryService;
 
-    @Autowired
-    private ProcessRuntime processRuntime;
-
     /**
      * 流程部署通过上传BPMN文件或压缩包
      * @Author : Nexus

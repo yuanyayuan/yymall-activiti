@@ -11,8 +11,8 @@
     <groupId>com.nexus.test</groupId>
     <artifactId>springboot-activiti</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springboot-activiti</name>
-    <description>springBoot集成activiti</description>
+    <name>activiti-parent</name>
+    <description>yymall后台管理工作流系统</description>
 
     <packaging>pom</packaging>
     <modules>
