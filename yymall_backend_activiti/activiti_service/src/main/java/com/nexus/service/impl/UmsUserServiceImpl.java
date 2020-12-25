@@ -1,13 +1,18 @@
 package com.nexus.service.impl;
 
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import com.github.pagehelper.PageHelper;
+import com.google.common.collect.Lists;
 import com.nexus.common.exception.Asserts;
 import com.nexus.dao.mapper.UmsUserMapper;
+import com.nexus.dao.mapper.UmsUserRoleRelationMapper;
 import com.nexus.dao.mapper.custom.UmsUserRoleRelationMapperCustom;
 import com.nexus.pojo.UmsResource;
 import com.nexus.pojo.UmsRole;
 import com.nexus.pojo.UmsUser;
+import com.nexus.pojo.UmsUserRoleRelation;
+import com.nexus.pojo.bo.user.UpdateUserPasswordBO;
 import com.nexus.pojo.bo.user.UserCreateBO;
 import com.nexus.pojo.bo.user.UserDetailsBO;
 import com.nexus.security.util.JwtTokenUtil;
@@ -25,6 +30,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
 
@@ -43,6 +49,10 @@ public class UmsUserServiceImpl implements IUmsUserService {
 
     @Autowired
     private UmsUserMapper userMapper;
+
+    @Autowired
+    private UmsUserRoleRelationMapper userRoleRelationMapper;
+
     @Autowired
     private UmsUserRoleRelationMapperCustom userRoleRelationMapperCustom;
 
@@ -235,5 +245,80 @@ public class UmsUserServiceImpl implements IUmsUserService {
             }
         }
         return userMapper.updateByPrimaryKeySelective(user);
+    }
+
+
+    /**
+     * @param param
+     * @return int
+     * @Author LiYuan
+     * @Description
+     * @Date 11:09 2020/12/25
+     **/
+    @Override
+    public int updatePassword(UpdateUserPasswordBO param) {
+        Example example = new Example(UmsUser.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("username",param.getUsername());
+        List<UmsUser> userList = userMapper.selectByExample(example);
+        //找不到用户
+        if(CollUtil.isEmpty(userList)){
+           Asserts.fail("找不到该用户");
+        }
+        //旧密码错误
+        UmsUser user = userList.get(0);
+        if(!passwordEncoder.matches(param.getOldPassword(),user.getPassword())){
+            Asserts.fail("旧密码错误");
+        }
+        //修改成功
+        user.setPassword(passwordEncoder.encode(param.getNewPassword()));
+        userMapper.updateByPrimaryKey(user);
+        return 1;
+    }
+
+    /**
+     * 删除指定用户
+     *
+     * @param id
+     * @return int
+     * @Author LiYuan
+     * @Description 删除指定用户
+     * @Date 10:34 2020/11/2
+     **/
+    @Override
+    public int delete(Long id) {
+        return userMapper.deleteByPrimaryKey(id);
+    }
+
+    /**
+     * 修改用户角色关系
+     *
+     * @param adminId
+     * @param roleIds
+     * @return int
+     * @Author LiYuan
+     * @Description 修改用户角色关系
+     * @Date 10:32 2020/11/5
+     **/
+    @Override
+    public int updateRole(Long adminId, List<Long> roleIds) {
+        int count = roleIds == null ? 0 : roleIds.size();
+        //先删除原来的关系
+        Example example = new Example(UmsUserRoleRelation.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("userId",adminId);
+        userRoleRelationMapper.deleteByExample(example);
+        //建立新关系
+        if (!CollectionUtils.isEmpty(roleIds)) {
+            List<UmsUserRoleRelation> list = Lists.newArrayList();
+            for (Long roleId : roleIds) {
+                UmsUserRoleRelation userRoleRelation = new UmsUserRoleRelation();
+                userRoleRelation.setUserId(adminId);
+                userRoleRelation.setRoleId(roleId);
+                list.add(userRoleRelation);
+            }
+            userRoleRelationMapperCustom.insertList(list);
+        }
+        return count;
     }
 }

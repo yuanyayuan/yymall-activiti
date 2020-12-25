@@ -7,6 +7,7 @@ import com.nexus.common.api.ResultCode;
 import com.nexus.common.api.ServerResponse;
 import com.nexus.pojo.UmsRole;
 import com.nexus.pojo.UmsUser;
+import com.nexus.pojo.bo.user.UpdateUserPasswordBO;
 import com.nexus.pojo.bo.user.UserCreateBO;
 import com.nexus.pojo.bo.user.UserLoginBO;
 import com.nexus.service.IUmsResourceService;
@@ -31,7 +32,7 @@ import java.util.stream.Collectors;
 @Validated
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class UmsUserController {
     @Value("${jwt.tokenHeader}")
     private String tokenHeader;
     /**
@@ -154,5 +155,56 @@ public class UserController {
         return ServerResponse.failed();
     }
 
+    @ApiOperation(value = "修改指定用户密码", notes = "修改指定用户密码", httpMethod = "POST")
+    @PostMapping(value = "/updatePassword")
+    public ServerResponse updatePassword(@Validated @RequestBody UpdateUserPasswordBO updatePasswordParam){
+        int status = userService.updatePassword(updatePasswordParam);
+        if (status > 0) {
+            return ServerResponse.success(status);
+        } else {
+            return ServerResponse.failed();
+        }
+    }
+
+    @ApiOperation(value = "删除指定用户信息", notes = "删除指定用户信息", httpMethod = "POST")
+    @PostMapping(value = "/delete/{id}")
+    public ServerResponse delete(@PathVariable Long id) {
+        int count = userService.delete(id);
+        if (count > 0) {
+            return ServerResponse.success(count);
+        }
+        return ServerResponse.failed();
+    }
+
+    @ApiOperation(value = "修改帐号状态", notes = "修改帐号状态", httpMethod = "POST")
+    @PostMapping(value = "/updateStatus/{id}")
+    public ServerResponse updateStatus(@PathVariable Long id,@RequestParam(value = "status") Integer status) {
+        UmsUser admin = new UmsUser();
+        admin.setStatus(status);
+        int count = userService.update(id,admin);
+        if (count > 0) {
+            return ServerResponse.success(count);
+        }
+        return ServerResponse.failed();
+    }
+
+    @ApiOperation(value = "给用户分配角色", notes = "给用户分配角色", httpMethod = "POST")
+    @PostMapping(value = "/role/update")
+    public ServerResponse updateRole(@RequestParam("adminId") Long adminId,
+                                     @RequestParam("roleIds") List<Long> roleIds) {
+        int count = userService.updateRole(adminId, roleIds);
+        if (count >= 0) {
+            return ServerResponse.success(count);
+        }
+        return ServerResponse.failed();
+    }
+
+    @ApiOperation("获取指定用户的角色")
+    @RequestMapping(value = "/role/{adminId}", method = RequestMethod.GET)
+    @ResponseBody
+    public ServerResponse<List<UmsRole>> getRoleList(@PathVariable Long adminId) {
+        List<UmsRole> roleList = userService.getRoleList(adminId);
+        return ServerResponse.success(roleList);
+    }
 
 }

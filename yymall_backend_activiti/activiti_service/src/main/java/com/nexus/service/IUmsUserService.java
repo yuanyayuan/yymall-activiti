@@ -3,8 +3,11 @@ package com.nexus.service;
 import com.nexus.pojo.UmsResource;
 import com.nexus.pojo.UmsRole;
 import com.nexus.pojo.UmsUser;
+import com.nexus.pojo.bo.user.UpdateUserPasswordBO;
 import com.nexus.pojo.bo.user.UserCreateBO;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 /**
@@ -73,7 +76,7 @@ public interface IUmsUserService {
     /**
      * 获取用户的角色
      * @Author LiYuan
-     * @Description //TODO
+     * @Description
      * @Date 15:06 2020/12/24
      * @param userId
      * @return java.util.List<com.nexus.pojo.UmsRole>
@@ -106,7 +109,7 @@ public interface IUmsUserService {
      * 根据用户id获取用户
      *
      * @Author LiYuan
-     * @Description //TODO
+     * @Description
      * @Date 15:04 2020/12/24
      * @param id
      * @return com.nexus.pojo.UmsUser
@@ -122,4 +125,40 @@ public interface IUmsUserService {
      * @return int
     **/
     int update(Long id, UmsUser user);
+    /**
+     *
+     * @Author LiYuan
+     * @Description
+     * @Date 11:09 2020/12/25
+     * @param param
+     * @return int
+    **/
+    int updatePassword(UpdateUserPasswordBO param);
+
+
+    /**
+     *
+     * 删除指定用户
+     *
+     * @Author LiYuan
+     * @Description 删除指定用户
+     * @Date 10:34 2020/11/2
+     * @param id
+     * @return int
+     **/
+    int delete(Long id);
+
+    /**
+     *
+     * 修改用户角色关系
+     *
+     * @Author LiYuan
+     * @Description 修改用户角色关系
+     * @Date 10:32 2020/11/5
+     * @param adminId
+     * @param roleIds
+     * @return int
+     **/
+    @Transactional(propagation = Propagation.REQUIRED,rollbackFor = RuntimeException.class)
+    int updateRole(Long adminId, List<Long> roleIds);
 }
