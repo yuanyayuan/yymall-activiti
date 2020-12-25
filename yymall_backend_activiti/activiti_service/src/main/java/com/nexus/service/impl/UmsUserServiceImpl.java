@@ -1,5 +1,7 @@
 package com.nexus.service.impl;
 
+import cn.hutool.core.util.StrUtil;
+import com.github.pagehelper.PageHelper;
 import com.nexus.common.exception.Asserts;
 import com.nexus.dao.mapper.UmsUserMapper;
 import com.nexus.dao.mapper.custom.UmsUserRoleRelationMapperCustom;
@@ -23,6 +25,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.Collection;
@@ -146,16 +149,91 @@ public class UmsUserServiceImpl implements IUmsUserService {
 
     /**
      * 获取用户的角色
-     *
      * @param userId
      * @return : java.util.List<com.nexus.pojo.UmsRole>
      * @Author : Nexus
-     * @Description : //TODO
+     * @Description :
      * @Date : 2020/12/20 21:33
      * @Param : adminId
      */
     @Override
     public List<UmsRole> getRoleList(Long userId) {
         return userRoleRelationMapperCustom.getRoleList(userId);
+    }
+
+    /**
+     * 刷新token的功能
+     * @param oldToken
+     * @return java.lang.String
+     * @Author LiYuan
+     * @Description
+     * @Date 14:12 2020/12/24
+     **/
+    @Override
+    public String refreshToken(String oldToken) {
+        return jwtTokenUtil.refreshHeadToken(oldToken);
+    }
+
+    /**
+     * 根据用户名或昵称分页查询用户
+     * @param keyword
+     * @param page
+     * @param pageSize
+     * @return java.util.List<com.nexus.pojo.UmsUser>
+     * @Author LiYuan
+     * @Description
+     * @Date 14:57 2020/12/24
+     **/
+    @Override
+    public List<UmsUser> list(String keyword, Integer page, Integer pageSize) {
+        Example example = new Example(UmsUser.class);
+        Example.Criteria criteria = example.createCriteria();
+        if (!StringUtils.isEmpty(keyword)) {
+            criteria.andLike("username","%" + keyword + "%");
+            example.or(example.createCriteria().andLike("nickName","%" + keyword + "%"));
+        }
+        PageHelper.startPage(page, pageSize);
+        return userMapper.selectByExample(example);
+    }
+
+    /**
+     * 根据用户id获取用户
+     * @param id
+     * @return com.nexus.pojo.UmsUser
+     * @Author LiYuan
+     * @Description
+     * @Date 15:04 2020/12/24
+     **/
+    @Override
+    public UmsUser getItem(Long id) {
+        return userMapper.selectByPrimaryKey(id);
+    }
+
+    /**
+     * 修改指定用户信息
+     *
+     * @param id
+     * @param user
+     * @return int
+     * @Author LiYuan
+     * @Description
+     * @Date 15:10 2020/12/24
+     **/
+    @Override
+    public int update(Long id, UmsUser user) {
+        user.setId(id);
+        UmsUser umsUser = userMapper.selectByPrimaryKey(id);
+        if(umsUser.getPassword().equals(user.getPassword())){
+            //与原加密密码相同的不需要修改
+            user.setPassword(null);
+        }else{
+            //与原加密密码不同的需要加密修改
+            if(StrUtil.isEmpty(user.getPassword())){
+                user.setPassword(null);
+            }else{
+                user.setPassword(passwordEncoder.encode(user.getPassword()));
+            }
+        }
+        return userMapper.updateByPrimaryKeySelective(user);
     }
 }

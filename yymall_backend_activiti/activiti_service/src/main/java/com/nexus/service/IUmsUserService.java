@@ -55,7 +55,7 @@ public interface IUmsUserService {
     /**
      * SpringSecurity读取用户信息及权限
      * @Author LiYuan
-     * @Description //TODO
+     * @Description
      * @Date 9:21 2020/12/14
      * @param username 用户名
      * @return org.springframework.security.core.userdetails.UserDetails
@@ -64,7 +64,7 @@ public interface IUmsUserService {
     /**
      * 根据用户Id获取用户资源
      * @Author LiYuan
-     * @Description //TODO
+     * @Description
      * @Date 9:22 2020/12/14
      * @param userId 用户Id
      * @return java.util.List<com.nexus.pojo.UmsResource>
@@ -72,11 +72,54 @@ public interface IUmsUserService {
     List<UmsResource> getResourceList(Long userId);
     /**
      * 获取用户的角色
-     * @Author : Nexus
-     * @Description : //TODO
-     * @Date : 2020/12/20 21:33
-     * @Param : adminId
-     * @return : java.util.List<com.nexus.pojo.UmsRole>
-     **/
+     * @Author LiYuan
+     * @Description //TODO
+     * @Date 15:06 2020/12/24
+     * @param userId
+     * @return java.util.List<com.nexus.pojo.UmsRole>
+    **/
     List<UmsRole> getRoleList(Long userId);
+
+    /**
+     * 刷新token的功能
+     * @Author LiYuan
+     * @Description
+     * @Date 14:12 2020/12/24
+     * @param oldToken
+     * @return java.lang.String
+    **/
+    String refreshToken(String oldToken);
+    /**
+     * 根据用户名或昵称分页查询用户
+     * @Author LiYuan
+     * @Description
+     * @Date 14:57 2020/12/24
+     * @param keyword
+     * @param page
+     * @param pageSize
+     * @return java.util.List<com.nexus.pojo.UmsUser>
+    **/
+    List<UmsUser> list(String keyword, Integer page, Integer pageSize);
+
+    /**
+     *
+     * 根据用户id获取用户
+     *
+     * @Author LiYuan
+     * @Description //TODO
+     * @Date 15:04 2020/12/24
+     * @param id
+     * @return com.nexus.pojo.UmsUser
+    **/
+    UmsUser getItem(Long id);
+    /**
+     * 修改指定用户信息
+     * @Author LiYuan
+     * @Description
+     * @Date 15:10 2020/12/24
+     * @param id
+     * @param user
+     * @return int
+    **/
+    int update(Long id, UmsUser user);
 }

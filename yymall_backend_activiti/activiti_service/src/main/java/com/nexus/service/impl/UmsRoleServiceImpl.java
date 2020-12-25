@@ -4,9 +4,10 @@ import com.nexus.dao.mapper.custom.UmsRoleMapperCustom;
 import com.nexus.pojo.UmsMenu;
 import com.nexus.service.IUmsRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class UmsRoleServiceImpl implements IUmsRoleService {
 
     @Autowired
