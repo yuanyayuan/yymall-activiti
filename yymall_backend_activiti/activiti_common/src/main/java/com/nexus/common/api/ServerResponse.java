@@ -61,7 +61,7 @@ public class ServerResponse<T>{
      * @return com.snpas.pom.api.ServerResponse<T>
      **/
     public static <T> ServerResponse<T> success(){
-        return new ServerResponse<T>(ResultCode.SUCCESS.getCode());
+        return new ServerResponse<T>(ResultCode.SUCCESS.getCode(),ResultCode.SUCCESS.getMessage());
     }
 
     /**

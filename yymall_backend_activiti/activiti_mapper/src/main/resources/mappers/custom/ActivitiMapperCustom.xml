@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nexus.dao.mapper.custom.ActivitiMapperCustom">
+    <select id="selectFormDate" parameterType="string" resultType="java.util.HashMap">
+        SELECT
+        Control_ID_,Control_VALUE_
+        from formdata
+        where PROC_INST_ID_ = #{PROC_INST_ID}
+    </select>
+
+
+
+    <insert id="insertFormData">
+        insert into formdata (PROC_DEF_ID_,PROC_INST_ID_,FORM_KEY_,Control_ID_,Control_VALUE_) values
+        <foreach collection="maps" item="formData" index="index" separator=",">
+           (#{formData.PROC_DEF_ID_,jdbcType=VARCHAR},
+            #{formData.PROC_INST_ID_,jdbcType=VARCHAR},
+            #{formData.FORM_KEY_,jdbcType=VARCHAR},
+            #{formData.Control_ID_,jdbcType=VARCHAR},
+            #{formData.Control_VALUE_,jdbcType=VARCHAR})
+        </foreach>
+    </insert>
+</mapper>

@@ -115,7 +115,7 @@ public class ProcessInstanceController {
     public ServerResponse startProcess(
             @RequestParam("processDefinitionKey") String processDefinitionKey,
             @RequestParam("instanceName") String instanceName,
-            @RequestParam("instanceVariable") String instanceVariable) {
+            @RequestParam(value = "instanceVariable",required = false) String instanceVariable) {
         try {
             ProcessInstance processInstance = processRuntime.start(ProcessPayloadBuilder
                     .start()

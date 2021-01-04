@@ -47,7 +47,9 @@ public enum ResultCode implements IErrorCode {
     TASK_FINISH_ERROR(1,"任务完成失败"),
     HISTORY_TASK_FINISH_ERROR(1,"获取历史任务失败"),
     FORM_DATA_NULL(1,"无表单"),
-    FORM_DATA_SHOW_ERROR(1,"任务表单渲染失败");
+    FORM_DATA_SHOW_ERROR(1,"任务表单渲染失败"),
+    FORM_DATA_SAVE_ERROR(1,"任务表单保存失败"),
+    FORM_HISTORY_SHOW_ERROR(1,"渲染历史流程失败");;
 
     private long code;
     private String message;
