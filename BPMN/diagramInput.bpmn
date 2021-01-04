@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:activiti="http://activiti.org/bpmn" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:process id="Process_1Inputdata" name="输入数据后读取" isExecutable="true">
+    <bpmn2:startEvent id="StartEvent_1">
+      <bpmn2:outgoing>Flow_1y12sz8</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:userTask id="Activity_1pskljr" name="八戒输入数据" activiti:formKey="Activity_1pskljr" activiti:assignee="八戒">
+      <bpmn2:extensionElements>
+        <activiti:formProperty id="FormProperty_23bvp2c-_!string-_!名称-_!请输入姓名-_!f" />
+        <activiti:formProperty id="FormProperty_054tels-_!string-_!性别-_!是男是女-_!f" />
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_1y12sz8</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0y297py</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="Flow_1y12sz8" sourceRef="StartEvent_1" targetRef="Activity_1pskljr" />
+    <bpmn2:userTask id="Activity_0yg5pl9" name="悟空查看数据" activiti:formKey="Activity_0yg5pl9" activiti:assignee="悟空">
+      <bpmn2:extensionElements>
+        <activiti:formProperty id="FormProperty_0veojbp-_!string-_!名称-_!悟空-_!f" />
+        <activiti:formProperty id="FormProperty_3nbvqv5-_!string-_!八戒的性别-_!FormProperty_054tels-_!f" />
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_0y297py</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_17h1a70</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="Flow_0y297py" sourceRef="Activity_1pskljr" targetRef="Activity_0yg5pl9" />
+    <bpmn2:endEvent id="Event_1cdbv1z">
+      <bpmn2:incoming>Flow_17h1a70</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="Flow_17h1a70" sourceRef="Activity_0yg5pl9" targetRef="Event_1cdbv1z" />
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1Inputdata">
+      <bpmndi:BPMNEdge id="Flow_1y12sz8_di" bpmnElement="Flow_1y12sz8">
+        <di:waypoint x="448" y="258" />
+        <di:waypoint x="500" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0y297py_di" bpmnElement="Flow_0y297py">
+        <di:waypoint x="600" y="258" />
+        <di:waypoint x="660" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_17h1a70_di" bpmnElement="Flow_17h1a70">
+        <di:waypoint x="760" y="258" />
+        <di:waypoint x="822" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="412" y="240" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1pskljr_di" bpmnElement="Activity_1pskljr">
+        <dc:Bounds x="500" y="218" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0yg5pl9_di" bpmnElement="Activity_0yg5pl9">
+        <dc:Bounds x="660" y="218" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1cdbv1z_di" bpmnElement="Event_1cdbv1z">
+        <dc:Bounds x="822" y="240" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
