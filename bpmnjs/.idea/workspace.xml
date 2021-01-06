@@ -2,25 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="422a747a-c41c-4a0e-8d34-4d4142a2d633" name="默认的" comment="">
-      <change afterPath="$PROJECT_DIR$/../BPMN/formBPMNV2.bpmn" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../yymall_backend_activiti/activiti_mapper/src/main/java/com/nexus/dao/mapper/FormdataMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../yymall_backend_activiti/activiti_mapper/src/main/java/com/nexus/dao/mapper/custom/ActivitiMapperCustom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../yymall_backend_activiti/activiti_mapper/src/main/resources/mappers/FormdataMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../yymall_backend_activiti/activiti_mapper/src/main/resources/mappers/custom/ActivitiMapperCustom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../yymall_backend_activiti/activiti_pojo/src/main/java/com/nexus/pojo/Formdata.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../yymall_backend_activiti/activiti_service/src/main/java/com/nexus/service/IActivitiService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../yymall_backend_activiti/activiti_service/src/main/java/com/nexus/service/impl/ActivitiServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/tools.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../yymall_backend_activiti/activiti_api/src/main/java/com/nexus/api/controller/ProcessInstanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../yymall_backend_activiti/activiti_api/src/main/java/com/nexus/api/controller/ProcessInstanceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../yymall_backend_activiti/activiti_api/src/main/java/com/nexus/api/controller/TaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../yymall_backend_activiti/activiti_api/src/main/java/com/nexus/api/controller/TaskController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../yymall_backend_activiti/activiti_api/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../yymall_backend_activiti/activiti_api/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../yymall_backend_activiti/activiti_api/src/main/resources/logback-spring.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../yymall_backend_activiti/activiti_api/src/main/resources/logback-spring.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../yymall_backend_activiti/activiti_common/src/main/java/com/nexus/common/api/ResultCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/../yymall_backend_activiti/activiti_common/src/main/java/com/nexus/common/api/ResultCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -42,6 +39,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="terminal" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="npm.dev">
@@ -91,10 +89,30 @@
       <workItem from="1609676711394" duration="910000" />
       <workItem from="1609766209111" duration="928000" />
       <workItem from="1609768244483" duration="631000" />
+      <workItem from="1609934699685" duration="349000" />
+      <workItem from="1609935061432" duration="73000" />
+      <workItem from="1609935144326" duration="129000" />
+      <workItem from="1609935282449" duration="2939000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
