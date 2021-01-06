@@ -10,7 +10,6 @@ import com.nexus.pojo.UmsUser;
 import com.nexus.pojo.bo.user.UpdateUserPasswordBO;
 import com.nexus.pojo.bo.user.UserCreateBO;
 import com.nexus.pojo.bo.user.UserLoginBO;
-import com.nexus.service.IUmsResourceService;
 import com.nexus.service.IUmsRoleService;
 import com.nexus.service.IUmsUserService;
 import io.swagger.annotations.Api;
@@ -24,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotBlank;
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -200,11 +200,17 @@ public class UmsUserController {
     }
 
     @ApiOperation("获取指定用户的角色")
-    @RequestMapping(value = "/role/{adminId}", method = RequestMethod.GET)
-    @ResponseBody
+    @GetMapping(value = "/role/{adminId}")
     public ServerResponse<List<UmsRole>> getRoleList(@PathVariable Long adminId) {
         List<UmsRole> roleList = userService.getRoleList(adminId);
         return ServerResponse.success(roleList);
+    }
+
+    @ApiOperation("获取用户列表")
+    @GetMapping(value = "/getUsers")
+    public ServerResponse<List<HashMap<String, Object>>> getUsers() {
+        List<HashMap<String, Object>> userList = userService.getUserList();
+        return ServerResponse.success(userList);
     }
 
 }

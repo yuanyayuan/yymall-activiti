@@ -12,4 +12,6 @@ public interface ActivitiMapperCustom {
 
     int insertFormData(@Param("maps")List<HashMap<String,Object>> maps);
 
+    List<HashMap<String,Object>> selectUsers();
+
 }

@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
 /**
  * @className IUmsUserService
@@ -161,4 +162,7 @@ public interface IUmsUserService {
      **/
     @Transactional(propagation = Propagation.REQUIRED,rollbackFor = RuntimeException.class)
     int updateRole(Long adminId, List<Long> roleIds);
+
+
+    List<HashMap<String,Object>> getUserList();
 }

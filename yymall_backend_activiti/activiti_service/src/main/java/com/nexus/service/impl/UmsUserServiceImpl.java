@@ -7,6 +7,7 @@ import com.google.common.collect.Lists;
 import com.nexus.common.exception.Asserts;
 import com.nexus.dao.mapper.UmsUserMapper;
 import com.nexus.dao.mapper.UmsUserRoleRelationMapper;
+import com.nexus.dao.mapper.custom.ActivitiMapperCustom;
 import com.nexus.dao.mapper.custom.UmsUserRoleRelationMapperCustom;
 import com.nexus.pojo.UmsResource;
 import com.nexus.pojo.UmsRole;
@@ -36,6 +37,7 @@ import tk.mybatis.mapper.entity.Example;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -55,6 +57,8 @@ public class UmsUserServiceImpl implements IUmsUserService {
 
     @Autowired
     private UmsUserRoleRelationMapperCustom userRoleRelationMapperCustom;
+    @Autowired
+    private ActivitiMapperCustom activitiMapperCustom;
 
     @Override
     public UmsUser getUserByUsername(String username) {
@@ -320,5 +324,10 @@ public class UmsUserServiceImpl implements IUmsUserService {
             userRoleRelationMapperCustom.insertList(list);
         }
         return count;
+    }
+
+    @Override
+    public List<HashMap<String, Object>> getUserList() {
+        return activitiMapperCustom.selectUsers();
     }
 }

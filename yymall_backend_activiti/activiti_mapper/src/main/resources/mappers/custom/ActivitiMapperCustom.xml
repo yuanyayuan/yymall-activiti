@@ -20,4 +20,8 @@
             #{formData.Control_VALUE_,jdbcType=VARCHAR})
         </foreach>
     </insert>
+
+    <select id="selectUsers" resultType="java.util.HashMap">
+        select nick_name,username from ums_user
+    </select>
 </mapper>
