@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:activiti="http://activiti.org/bpmn" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:process id="Process_1formparam" name="动态表单参数测试" isExecutable="true">
+    <bpmn2:startEvent id="StartEvent_1">
+      <bpmn2:outgoing>Flow_1xsiu4e</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:userTask id="Activity_01gypak" name="八戒表单1" activiti:formKey="Activity_01gypak" activiti:assignee="八戒">
+      <bpmn2:extensionElements>
+        <activiti:formProperty id=" FormProperty_0a1nbgu-_!string-_!姓名-_!请填写姓名-_!f" />
+        <activiti:formProperty id="FormProperty_2pv129a-_!long-_!年龄-_!无-_!s" />
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_1xsiu4e</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1w4l1qe</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="Flow_1xsiu4e" sourceRef="StartEvent_1" targetRef="Activity_01gypak" />
+    <bpmn2:exclusiveGateway id="Gateway_0clg38n">
+      <bpmn2:incoming>Flow_1w4l1qe</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0qhu52g</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_1m07u4k</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="Flow_1w4l1qe" sourceRef="Activity_01gypak" targetRef="Gateway_0clg38n" />
+    <bpmn2:userTask id="Activity_104eyr8" name="八戒表单2" activiti:assignee="八戒">
+      <bpmn2:incoming>Flow_0qhu52g</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0mxijpt</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="Flow_0qhu52g" name="小于等于18" sourceRef="Gateway_0clg38n" targetRef="Activity_104eyr8">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression">${FormProperty_2pv129a&lt;=18}</bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:userTask id="Activity_18v7b2f" name="八戒表单3" activiti:assignee="八戒">
+      <bpmn2:incoming>Flow_1m07u4k</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1i1np2a</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="Flow_1m07u4k" name="大于18" sourceRef="Gateway_0clg38n" targetRef="Activity_18v7b2f">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression">${FormProperty_2pv129a&gt;18}</bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:endEvent id="Event_0qkhts9">
+      <bpmn2:incoming>Flow_0mxijpt</bpmn2:incoming>
+      <bpmn2:incoming>Flow_1i1np2a</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="Flow_1i1np2a" sourceRef="Activity_18v7b2f" targetRef="Event_0qkhts9" />
+    <bpmn2:sequenceFlow id="Flow_0mxijpt" sourceRef="Activity_104eyr8" targetRef="Event_0qkhts9" />
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1formparam">
+      <bpmndi:BPMNEdge id="Flow_1xsiu4e_di" bpmnElement="Flow_1xsiu4e">
+        <di:waypoint x="368" y="600" />
+        <di:waypoint x="590" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1w4l1qe_di" bpmnElement="Flow_1w4l1qe">
+        <di:waypoint x="690" y="600" />
+        <di:waypoint x="935" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0qhu52g_di" bpmnElement="Flow_0qhu52g">
+        <di:waypoint x="985" y="600" />
+        <di:waypoint x="1270" y="600" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1100" y="582" width="57" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1m07u4k_di" bpmnElement="Flow_1m07u4k">
+        <di:waypoint x="960" y="625" />
+        <di:waypoint x="960" y="800" />
+        <di:waypoint x="1270" y="800" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="959" y="710" width="34" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1i1np2a_di" bpmnElement="Flow_1i1np2a">
+        <di:waypoint x="1370" y="800" />
+        <di:waypoint x="1580" y="800" />
+        <di:waypoint x="1580" y="600" />
+        <di:waypoint x="1692" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0mxijpt_di" bpmnElement="Flow_0mxijpt">
+        <di:waypoint x="1370" y="600" />
+        <di:waypoint x="1692" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="332" y="582" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0clg38n_di" bpmnElement="Gateway_0clg38n" isMarkerVisible="true">
+        <dc:Bounds x="935" y="575" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0qkhts9_di" bpmnElement="Event_0qkhts9">
+        <dc:Bounds x="1692" y="582" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_01gypak_di" bpmnElement="Activity_01gypak">
+        <dc:Bounds x="590" y="560" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_104eyr8_di" bpmnElement="Activity_104eyr8">
+        <dc:Bounds x="1270" y="560" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_18v7b2f_di" bpmnElement="Activity_18v7b2f">
+        <dc:Bounds x="1270" y="760" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>

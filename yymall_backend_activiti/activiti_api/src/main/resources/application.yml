@@ -80,6 +80,7 @@ mapper:
 secure:
   ignored:
     urls: #安全路径白名单
+      - /bpmn/**
       - /swagger-ui/
       - /swagger-resources/**
       - /swagger/**

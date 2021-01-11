@@ -14,7 +14,23 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+/**
 
+* @Description:    java类作用描述 
+
+* @Author:         Nexus
+
+* @CreateDate:     2021/1/9 19:48
+
+* @UpdateUser:     Nexus 
+
+* @UpdateDate:     2021/1/9 19:48
+
+* @UpdateRemark:   修改内容
+
+* @Version:        1.0
+
+*/
 @Api(value = "后台资源管理",tags = {"后台资源管理"})
 @Validated
 @Slf4j
@@ -26,6 +42,14 @@ public class UmsResourceController {
 
     private final DynamicSecurityMetadataSource dynamicSecurityMetadataSource;
 
+    /**
+     * 添加后台资源
+     * @Author : Nexus
+     * @Description : 
+     * @Date : 2021/1/9 19:47
+     * @Param : umsResource
+     * @return : com.nexus.common.api.ServerResponse
+     **/
     @ApiOperation(value = "添加后台资源", notes = "添加后台资源", httpMethod = "GET")
     @GetMapping(value = "/create")
     public ServerResponse create(@RequestBody UmsResource umsResource) {

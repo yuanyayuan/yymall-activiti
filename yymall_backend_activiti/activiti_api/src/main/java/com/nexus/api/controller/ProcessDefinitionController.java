@@ -9,7 +9,6 @@ import com.nexus.common.enums.FileType;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.activiti.api.process.runtime.ProcessRuntime;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
@@ -41,6 +40,23 @@ import java.util.zip.ZipInputStream;
 * @UpdateUser:     Nexus 
 
 * @UpdateDate:     2020/12/17 21:51
+
+* @UpdateRemark:   修改内容
+
+* @Version:        1.0
+
+*/
+/**
+
+* @Description:    流程定义相关接口
+
+* @Author:         Nexus
+
+* @CreateDate:     2021/1/9 19:42
+
+* @UpdateUser:     Nexus
+
+* @UpdateDate:     2021/1/9 19:42
 
 * @UpdateRemark:   修改内容
 
@@ -112,7 +128,7 @@ public class ProcessDefinitionController {
     @ApiOperation(value = "流程部署通过上传BPMN文件中内容", notes = "流程部署通过上传BPMN文件中内容", httpMethod = "POST")
     @PostMapping(value = "/addDeploymentByString")
     public ServerResponse addDeploymentByString(@RequestParam("stringBPMN") String stringBPMN,
-                                                @RequestParam("deploymentName") String deploymentName) {
+                                                @RequestParam(value = "deploymentName",required = false) String deploymentName) {
         try {
             Deployment deployment = repositoryService.createDeployment()
                     .addString("CreateWithBPMNJS.bpmn",stringBPMN)
@@ -124,6 +140,15 @@ public class ProcessDefinitionController {
         }
     }
 
+    /**
+     * 流程部署通过deploymentFileUUID
+     * @Author : Nexus
+     * @Description :
+     * @Date : 2021/1/10 20:28
+     * @Param : deploymentFileUUID
+     * @Param : deploymentName
+     * @return : com.nexus.common.api.ServerResponse
+     **/
     @PostMapping(value = "/addDeploymentByFileNameBPMN")
     public ServerResponse addDeploymentByFileNameBPMN(@RequestParam("deploymentFileUUID") String deploymentFileUUID,
                                                       @RequestParam("deploymentName") String deploymentName) {
@@ -291,4 +316,6 @@ public class ProcessDefinitionController {
             return ServerResponse.failed("删除失败");
         }
     }
+
+
 }

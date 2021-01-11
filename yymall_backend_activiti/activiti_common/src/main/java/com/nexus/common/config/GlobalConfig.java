@@ -20,5 +20,7 @@ public class GlobalConfig {
     public static final Boolean Test = true;
 
     //windows路径
-    public static final String BPMN_PathMapping = "file:D:\\project\\原来是个商城\\yymall-activiti\\BPMN\\";
+    public static final String BPMN_PathMapping = "file:E:\\Workspace\\后端\\github\\李源的商城\\yymall-activiti\\BPMN\\";
+    //Liunx路径
+    //public static final String BPMN_PathMapping = "file:/root/Activiti/";
 }

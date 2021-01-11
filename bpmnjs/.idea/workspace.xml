@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="422a747a-c41c-4a0e-8d34-4d4142a2d633" name="默认的" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/tools.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../yymall_backend_activiti/activiti_api/src/main/java/com/nexus/api/config/PathMapping.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../yymall_backend_activiti/activiti_api/src/main/resources/token.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/tools.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/tools.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yymall_backend_activiti/activiti_api/src/main/java/com/nexus/api/controller/ProcessDefinitionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../yymall_backend_activiti/activiti_api/src/main/java/com/nexus/api/controller/ProcessDefinitionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yymall_backend_activiti/activiti_api/src/main/java/com/nexus/api/controller/UmsResourceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../yymall_backend_activiti/activiti_api/src/main/java/com/nexus/api/controller/UmsResourceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yymall_backend_activiti/activiti_api/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../yymall_backend_activiti/activiti_api/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yymall_backend_activiti/activiti_common/src/main/java/com/nexus/common/config/GlobalConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../yymall_backend_activiti/activiti_common/src/main/java/com/nexus/common/config/GlobalConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,11 +41,11 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../layuimini" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="terminal" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="npm.dev">
@@ -93,7 +99,25 @@
       <workItem from="1609935061432" duration="73000" />
       <workItem from="1609935144326" duration="129000" />
       <workItem from="1609935282449" duration="2939000" />
+      <workItem from="1609949806846" duration="129000" />
+      <workItem from="1610031395784" duration="2117000" />
+      <workItem from="1610203219544" duration="1148000" />
+      <workItem from="1610206788346" duration="1315000" />
+      <workItem from="1610208601998" duration="1176000" />
+      <workItem from="1610210763568" duration="41000" />
+      <workItem from="1610210807838" duration="3360000" />
+      <workItem from="1610265803514" duration="596000" />
+      <workItem from="1610278511029" duration="1672000" />
+      <workItem from="1610286662560" duration="3033000" />
     </task>
+    <task id="LOCAL-00001" summary="自定义下载bpmn">
+      <created>1609949915062</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1609949915062</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -104,12 +128,22 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="自定义下载bpmn" />
+    <option name="LAST_COMMIT_MESSAGE" value="自定义下载bpmn" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
